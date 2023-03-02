@@ -15,7 +15,7 @@ init-gef-gba
 target remote localhost:2345
 ```
 
-If you are using Windows, the [The xPack GNU Arm Embedded GCC](https://xpack.github.io/dev-tools/arm-none-eabi-gcc) ships with a version of `arm-none-eabi-gdb` compatible with Python 3.
+If you are using Windows, the [xPack GNU Arm Embedded GCC](https://xpack.github.io/dev-tools/arm-none-eabi-gcc) ships with a version of `arm-none-eabi-gdb` compatible with Python 3.
 
 ## How to use
 
