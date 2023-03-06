@@ -1885,7 +1885,7 @@ def process_lookup_path(name: str, perm: Permission = Permission.ALL) -> Optiona
         return None
 
     for sect in gef.memory.maps:
-        if name in sect.path and sect.permission & perm:
+        if name in sect.name and sect.permission & perm:
             return sect
 
     return None
