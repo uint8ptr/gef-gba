@@ -3245,9 +3245,9 @@ class ScanSectionCommand(GenericCommand):
             needle_sections.append((start, end))
 
         for sect in gef.memory.maps:
-            if haystack in sect.path:
-                haystack_sections.append((sect.start, sect.end, os.path.basename(sect.path)))
-            if needle in sect.path:
+            if haystack in sect.name:
+                haystack_sections.append((sect.start, sect.end, sect.name))
+            if needle in sect.name:
                 needle_sections.append((sect.start, sect.end))
 
         step = gef.arch.ptrsize
@@ -3287,8 +3287,8 @@ class SearchPatternCommand(GenericCommand):
 
     def print_section(self, section: Section) -> None:
         title = "In "
-        if section.path:
-            title += f"'{Color.blueify(section.path)}'"
+        if section.name:
+            title += f"'{Color.blueify(section.name)}'"
 
         title += f"({section.start:#x}-{section.end:#x})"
         title += f", permission={section.permission}"
@@ -3346,8 +3346,7 @@ class SearchPatternCommand(GenericCommand):
         """Search a pattern within the whole userland memory."""
         for section in gef.memory.maps:
             if not section.permission & Permission.READ: continue
-            if section.path == "[vvar]": continue
-            if not section_name in section.path: continue
+            if not section_name in section.name: continue
 
             start = section.start
             end = section.end - 1
@@ -3397,9 +3396,6 @@ class SearchPatternCommand(GenericCommand):
                     self.print_loc(loc)
             else:
                 section_name = argv[2]
-                if section_name == "binary":
-                    section_name = get_filepath() or ""
-
                 self.search_pattern(pattern, section_name)
         else:
             info(f"Searching '{Color.yellowify(pattern)}' in memory")
