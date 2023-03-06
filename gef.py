@@ -5138,9 +5138,7 @@ class XAddressInfoCommand(GenericCommand):
             gef_print(f"Page: {format_address(sect.start)} {RIGHT_ARROW} "
                       f"{format_address(sect.end)} (size={sect.end-sect.start:#x})"
                       f"\nPermissions: {sect.permission}"
-                      f"\nPathname: {sect.path}"
-                      f"\nOffset (from page): {addr.value-sect.start:#x}"
-                      f"\nInode: {sect.inode}")
+                      f"\nName: {sect.name}")
 
         if info:
             gef_print(f"Segment: {info.name} "
